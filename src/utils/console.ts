@@ -1,5 +1,4 @@
 import { style } from "@tsmodule/log";
-import { exec } from "child_process";
 import { readFile } from "fs/promises";
 import { VERSION } from "../globs/shared";
 
@@ -19,22 +18,14 @@ export const displayDimmed = (message: string) => {
     console.log(style(message, ["dim"]));
 }
 
+export const displayPrompt = (message: string) => {
+    console.log(style(message, ["bold"]));
+}
+
 export const trimLinePrefixes = (shellText: string) => shellText.trim().split("\n").map(
     (line: string) => line.replace(/^\$ /, "")
   ).join("\n");
 
 export const promptStyle = ` ${style("$", ["bold", "dim"])} `;
 
-export const executeCommand = async (command: string) => {
-    exec(command, (err, stdout, stderr) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        if (stderr) {
-          console.error(stderr);
-        }
-  
-        console.log(stdout);
-      });
-}
+export const entrappedStyle = ` ${style("$", ["bold"])} `;

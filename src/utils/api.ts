@@ -13,9 +13,12 @@ export async function checkAuth() {
     process.exit(1);
     }
 }
+interface shellResponse {
+  native: string;
+}
 
-export const fetchResponseFromApi = async (command: string, transcript: string) => {
-    return await AUTH0_CLIENT.fetch(
+export const fetchResponseFromApi = async (command: string, transcript: string)  => {
+    const response = await AUTH0_CLIENT.fetch(
     `${DOMAIN_URL}/api/gsh/shell`,
     {
       method: "POST",
@@ -26,4 +29,5 @@ export const fetchResponseFromApi = async (command: string, transcript: string) 
       })
     }
   ).then((res) => res.json())
+  return response as shellResponse;
 }

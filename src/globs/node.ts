@@ -10,4 +10,5 @@ export const AUTH0_CLIENT = new Auth0NodeClient({
 
 export const CONFIG_FILES = {
   TRANSCRIPT: resolve(homedir(), ".gsh", "transcript.txt"),
+  ENTRAPMENT: resolve(homedir(), ".gsh", "entrapment.txt"),
 };
